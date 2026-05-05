@@ -1,0 +1,44 @@
+{
+  "name": "feriko-ui",
+  "version": "0.1.0",
+  "description": "Add feriko-ui components to your project. Inspired by shadcn/ui's CLI ergonomics.",
+  "license": "MIT",
+  "author": "FeriKO-tech",
+  "homepage": "https://github.com/FeriKO-tech/feriko-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FeriKO-tech/feriko-ui.git",
+    "directory": "packages/cli"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "feriko-ui": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "registry": "node scripts/build-registry.mjs",
+    "build": "pnpm registry && tsup",
+    "dev": "pnpm registry && tsup --watch",
+    "clean": "rimraf dist src/registry/components.json",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cac": "^6.7.14",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/prompts": "^2.4.9",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
