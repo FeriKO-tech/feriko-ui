@@ -28,17 +28,8 @@ jobs:
       - name: Build package
         run: pnpm build
 
-      - name: Typecheck @feriko/ui
-        run: pnpm --filter @feriko/ui exec tsc --noEmit --pretty false
-
-      - name: Typecheck feriko-ui CLI
-        run: pnpm --filter feriko-ui exec tsc --noEmit --pretty false
-
-      - name: Typecheck @feriko/docs
-        run: pnpm --filter @feriko/docs exec tsc --noEmit --pretty false
-
-      - name: Typecheck storybook
-        run: pnpm --filter storybook exec tsc --noEmit --pretty false
+      - name: Typecheck
+        run: pnpm typecheck
 
       - name: Build Storybook
         run: pnpm build:storybook
