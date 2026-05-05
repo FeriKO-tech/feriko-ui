@@ -1,0 +1,15 @@
+html, body, #storybook-root {
+  background: var(--fui-bg);
+  color: var(--fui-text);
+  font-family: var(--fui-font);
+}
+
+#storybook-root {
+  padding: 1.5rem;
+  min-height: 100vh;
+}
+
+/* Let stories breathe */
+.sb-show-main.sb-main-padded {
+  padding: 2rem;
+}

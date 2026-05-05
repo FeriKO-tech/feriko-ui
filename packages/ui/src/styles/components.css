@@ -1,0 +1,476 @@
+/* feriko-ui - Component Styles
+ *
+ * All components read colours / radii / shadows from CSS variables declared
+ * in variables.css. Variants (e.g. .fui-btn--primary, .fui-btn--ghost)
+ * are applied by CVA from the React layer.
+ */
+
+.fui {
+  box-sizing: border-box;
+}
+
+.fui *,
+.fui *::before,
+.fui *::after {
+  box-sizing: inherit;
+}
+
+/* ============================================================
+ * Button
+ * ============================================================ */
+
+.fui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--fui-radius);
+  font-family: var(--fui-font);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background var(--fui-transition),
+    border-color var(--fui-transition),
+    color var(--fui-transition),
+    box-shadow var(--fui-transition),
+    transform var(--fui-transition);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.fui-btn:focus-visible {
+  outline: 2px solid var(--fui-accent);
+  outline-offset: 2px;
+}
+
+.fui-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.fui-btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+/* sizes */
+.fui-btn--sm { padding: 0.375rem 0.75rem; font-size: 12px; border-radius: var(--fui-radius-sm); }
+.fui-btn--md { padding: 0.55rem 1rem;    font-size: 14px; }
+.fui-btn--lg { padding: 0.75rem 1.4rem;  font-size: 16px; border-radius: var(--fui-radius-lg); }
+
+/* primary */
+.fui-btn--primary {
+  background: var(--fui-accent);
+  color: var(--fui-accent-contrast);
+  border-color: var(--fui-accent);
+}
+.fui-btn--primary:hover:not(:disabled) {
+  background: var(--fui-accent-glow);
+  border-color: var(--fui-accent-glow);
+  box-shadow: var(--fui-shadow-glow);
+}
+
+/* ghost */
+.fui-btn--ghost {
+  background: transparent;
+  color: var(--fui-text);
+  border-color: var(--fui-border);
+}
+.fui-btn--ghost:hover:not(:disabled) {
+  border-color: var(--fui-accent);
+  color: var(--fui-accent-glow);
+}
+
+/* danger */
+.fui-btn--danger {
+  background: var(--fui-danger);
+  color: #fff;
+  border-color: var(--fui-danger);
+}
+.fui-btn--danger:hover:not(:disabled) {
+  background: var(--fui-danger-glow);
+  border-color: var(--fui-danger-glow);
+  box-shadow: 0 0 24px rgba(255, 77, 94, 0.35);
+}
+
+/* neon - signature variant */
+.fui-btn--neon {
+  background: transparent;
+  color: var(--fui-neon-b);
+  border-color: var(--fui-neon-b);
+  text-shadow: 0 0 8px var(--fui-neon-b);
+  box-shadow:
+    0 0 8px rgba(76, 242, 255, 0.3),
+    inset 0 0 12px rgba(76, 242, 255, 0.1);
+}
+.fui-btn--neon:hover:not(:disabled) {
+  color: var(--fui-neon-a);
+  border-color: var(--fui-neon-a);
+  text-shadow: 0 0 12px var(--fui-neon-a);
+  box-shadow:
+    0 0 18px rgba(255, 60, 207, 0.5),
+    inset 0 0 18px rgba(255, 60, 207, 0.15);
+}
+
+/* link */
+.fui-btn--link {
+  background: transparent;
+  color: var(--fui-accent-glow);
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+}
+.fui-btn--link:hover:not(:disabled) {
+  text-decoration-color: var(--fui-accent-glow);
+}
+
+/* ============================================================
+ * Badge / Chip
+ * ============================================================ */
+
+.fui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--fui-border);
+  background: var(--fui-bg-raised);
+  color: var(--fui-text-dim);
+  font-family: var(--fui-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.fui-badge--accent  { color: var(--fui-accent-glow); border-color: var(--fui-accent); background: rgba(157, 123, 255, 0.12); }
+.fui-badge--success { color: var(--fui-success);    border-color: var(--fui-success); background: rgba(34, 197, 94, 0.12); }
+.fui-badge--danger  { color: var(--fui-danger-glow); border-color: var(--fui-danger); background: rgba(255, 77, 94, 0.12); }
+.fui-badge--warning { color: var(--fui-warning);    border-color: var(--fui-warning); background: rgba(245, 181, 68, 0.12); }
+.fui-badge--info    { color: var(--fui-info);       border-color: var(--fui-info); background: rgba(99, 210, 255, 0.12); }
+
+.fui-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* ============================================================
+ * Card
+ * ============================================================ */
+
+.fui-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: var(--fui-radius-lg);
+  background: var(--fui-bg-soft);
+  border: 1px solid var(--fui-border);
+  color: var(--fui-text);
+  font-family: var(--fui-font);
+  transition: border-color var(--fui-transition), box-shadow var(--fui-transition), transform var(--fui-transition);
+}
+
+.fui-card--interactive {
+  cursor: pointer;
+}
+.fui-card--interactive:hover {
+  border-color: var(--fui-accent);
+  box-shadow: var(--fui-shadow-glow);
+  transform: translateY(-2px);
+}
+
+.fui-card--glow {
+  border-color: rgba(157, 123, 255, 0.3);
+  box-shadow: var(--fui-shadow-glow);
+}
+
+.fui-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fui-text);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.fui-card__description {
+  color: var(--fui-text-dim);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============================================================
+ * Input / Textarea / Select
+ * ============================================================ */
+
+.fui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: var(--fui-font);
+}
+
+.fui-field__label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fui-text-dim);
+  font-family: var(--fui-font-mono);
+}
+
+.fui-field__hint {
+  font-size: 12px;
+  color: var(--fui-text-faint);
+  line-height: 1.4;
+}
+
+.fui-field__error {
+  font-size: 12px;
+  color: var(--fui-danger-glow);
+}
+
+.fui-input,
+.fui-textarea,
+.fui-select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--fui-radius);
+  background: var(--fui-bg-soft);
+  border: 1px solid var(--fui-border);
+  color: var(--fui-text);
+  font-family: var(--fui-font);
+  font-size: 14px;
+  transition: border-color var(--fui-transition), box-shadow var(--fui-transition);
+}
+
+.fui-input::placeholder,
+.fui-textarea::placeholder {
+  color: var(--fui-text-faint);
+}
+
+.fui-input:hover,
+.fui-textarea:hover,
+.fui-select:hover {
+  border-color: var(--fui-border-strong);
+}
+
+.fui-input:focus-visible,
+.fui-textarea:focus-visible,
+.fui-select:focus-visible {
+  outline: none;
+  border-color: var(--fui-accent);
+  box-shadow: 0 0 0 3px rgba(157, 123, 255, 0.2);
+}
+
+.fui-input--invalid,
+.fui-textarea--invalid,
+.fui-select--invalid {
+  border-color: var(--fui-danger);
+}
+.fui-input--invalid:focus-visible,
+.fui-textarea--invalid:focus-visible,
+.fui-select--invalid:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 77, 94, 0.2);
+}
+
+.fui-textarea {
+  resize: vertical;
+  min-height: 5rem;
+  font-family: var(--fui-font-mono);
+}
+
+.fui-select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--fui-text-dim) 50%),
+    linear-gradient(135deg, var(--fui-text-dim) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+
+/* ============================================================
+ * GlitchText
+ * ============================================================ */
+
+.fui-glitch {
+  position: relative;
+  display: inline-block;
+  font-family: var(--fui-font-mono);
+  font-weight: 700;
+  color: var(--fui-text);
+  letter-spacing: 0.05em;
+}
+
+.fui-glitch::before,
+.fui-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.fui-glitch::before {
+  color: var(--fui-neon-a);
+  animation: fui-glitch-a 2.8s infinite steps(1, end);
+  clip-path: inset(0 0 70% 0);
+}
+
+.fui-glitch::after {
+  color: var(--fui-neon-b);
+  animation: fui-glitch-b 2.4s infinite steps(1, end);
+  clip-path: inset(60% 0 0 0);
+}
+
+@keyframes fui-glitch-a {
+  0%, 94%, 100% { transform: translate(0, 0); clip-path: inset(0 0 70% 0); }
+  95%           { transform: translate(-2px, -1px); clip-path: inset(10% 0 50% 0); }
+  96%           { transform: translate(1px, 2px);  clip-path: inset(40% 0 30% 0); }
+  97%           { transform: translate(-3px, 0);   clip-path: inset(15% 0 75% 0); }
+  98%           { transform: translate(2px, -2px); clip-path: inset(60% 0 10% 0); }
+}
+
+@keyframes fui-glitch-b {
+  0%, 92%, 100% { transform: translate(0, 0); clip-path: inset(60% 0 0 0); }
+  93%           { transform: translate(2px, 1px);  clip-path: inset(30% 0 40% 0); }
+  94%           { transform: translate(-1px, 2px); clip-path: inset(70% 0 5% 0); }
+  95%           { transform: translate(3px, -1px); clip-path: inset(20% 0 60% 0); }
+}
+
+/* ============================================================
+ * NeonBorder
+ * ============================================================ */
+
+.fui-neon {
+  position: relative;
+  border-radius: var(--fui-radius);
+  padding: 1.25rem;
+  background: var(--fui-bg);
+  border: 1px solid transparent;
+  color: var(--fui-text);
+  isolation: isolate;
+}
+
+.fui-neon::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--fui-neon-a), var(--fui-neon-b));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.fui-neon--glow {
+  box-shadow:
+    0 0 16px rgba(255, 60, 207, 0.35),
+    0 0 28px rgba(76, 242, 255, 0.25);
+}
+
+/* ============================================================
+ * TerminalBlock
+ * ============================================================ */
+
+.fui-terminal {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--fui-radius);
+  background: #07070c;
+  border: 1px solid var(--fui-border);
+  overflow: hidden;
+  font-family: var(--fui-font-mono);
+  color: var(--fui-text);
+  font-size: 13px;
+}
+
+.fui-terminal__header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.85rem;
+  background: #101019;
+  border-bottom: 1px solid var(--fui-border);
+}
+
+.fui-terminal__dots {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+.fui-terminal__dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2d2d3d;
+}
+.fui-terminal__dots span:nth-child(1) { background: #ff5f57; }
+.fui-terminal__dots span:nth-child(2) { background: #febc2e; }
+.fui-terminal__dots span:nth-child(3) { background: #28c840; }
+
+.fui-terminal__title {
+  color: var(--fui-text-faint);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.fui-terminal__body {
+  padding: 1rem 1.1rem;
+  white-space: pre;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+.fui-terminal__prompt {
+  color: var(--fui-accent-glow);
+  user-select: none;
+  margin-right: 0.6rem;
+}
+
+/* ============================================================
+ * ScanlineOverlay
+ * ============================================================ */
+
+.fui-scanlines {
+  position: relative;
+  isolation: isolate;
+}
+
+.fui-scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.045) 0,
+    rgba(255, 255, 255, 0.045) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+  animation: fui-scanlines-drift 8s linear infinite;
+}
+
+@keyframes fui-scanlines-drift {
+  to { background-position: 0 -120px; }
+}

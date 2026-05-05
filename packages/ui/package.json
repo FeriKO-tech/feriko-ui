@@ -1,0 +1,60 @@
+{
+  "name": "@feriko/ui",
+  "version": "0.1.0",
+  "description": "Dark / cyberpunk / gaming React UI primitives - Button, Card, Input, GlitchText, NeonBorder and more",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "tsup && node scripts/copy-styles.mjs",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.0",
+    "tsup": "^8.3.0",
+    "rimraf": "^6.0.1",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "ui",
+    "components",
+    "design-system",
+    "cyberpunk",
+    "gaming",
+    "dark-theme",
+    "neon",
+    "tailwindcss"
+  ],
+  "author": "FeriKO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FeriKO-tech/feriko-ui"
+  },
+  "homepage": "https://feriko-ui.vercel.app"
+}

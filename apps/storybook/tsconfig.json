@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@feriko/ui": ["../../packages/ui/src/index.ts"]
+    }
+  },
+  "include": ["src", ".storybook"]
+}

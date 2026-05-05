@@ -1,0 +1,40 @@
+{
+  "name": "feriko-ui-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "feriko-ui - React component library with a dark/cyberpunk/gaming aesthetic (monorepo root)",
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "build": "pnpm --filter @feriko/ui build",
+    "typecheck": "pnpm -r typecheck",
+    "dev": "pnpm --filter storybook dev",
+    "storybook": "pnpm --filter storybook dev",
+    "build:storybook": "pnpm --filter storybook build",
+    "lint": "pnpm typecheck",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "clean": "rimraf packages/*/dist apps/*/dist node_modules/.cache"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "ui",
+    "components",
+    "design-system",
+    "cyberpunk",
+    "gaming",
+    "dark-theme",
+    "neon"
+  ],
+  "author": "FeriKO",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.11",
+    "rimraf": "^6.0.1"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  }
+}
