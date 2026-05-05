@@ -20,4 +20,11 @@ const banner = '/* @feriko/ui - bundled styles. Import once at your app root. */
 const body = sources.map((p) => readFileSync(p, 'utf8')).join('\n\n');
 
 writeFileSync(resolve(distDir, 'styles.css'), banner + body);
+for (const file of ['index.js', 'index.mjs']) {
+  const path = resolve(distDir, file);
+  const current = readFileSync(path, 'utf8');
+  if (!current.startsWith("'use client';")) {
+    writeFileSync(path, `'use client';\n${current}`);
+  }
+}
 console.log('  ✓ dist/styles.css');

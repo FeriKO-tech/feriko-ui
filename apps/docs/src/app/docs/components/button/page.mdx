@@ -1,0 +1,64 @@
+# Button
+
+The press-it primitive. Five variants, three sizes, optional leading / trailing icon slots.
+
+## Variants
+
+<Preview>
+  <Button variant="primary">Primary</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="danger">Danger</Button>
+  <Button variant="neon">Neon</Button>
+  <Button variant="link">Link</Button>
+</Preview>
+
+```tsx
+<Button variant="primary">Primary</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="danger">Danger</Button>
+<Button variant="neon">Neon</Button>
+<Button variant="link">Link</Button>
+```
+
+## Sizes
+
+<Preview>
+  <Button size="sm">Small</Button>
+  <Button size="md">Medium</Button>
+  <Button size="lg">Large</Button>
+</Preview>
+
+```tsx
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+```
+
+## With icons
+
+<Preview>
+  <Button leadingIcon={<span aria-hidden>›</span>}>Continue</Button>
+  <Button trailingIcon={<span aria-hidden>↗</span>} variant="ghost">Open</Button>
+</Preview>
+
+```tsx
+<Button leadingIcon={<ArrowRightIcon />}>Continue</Button>
+<Button trailingIcon={<ExternalIcon />} variant="ghost">Open</Button>
+```
+
+## Disabled
+
+<Preview>
+  <Button disabled>Disabled</Button>
+  <Button variant="ghost" disabled>Disabled</Button>
+</Preview>
+
+## Props
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `'primary' \| 'ghost' \| 'danger' \| 'neon' \| 'link'` | `'primary'` |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |
+| `leadingIcon` | `ReactNode` | - |
+| `trailingIcon` | `ReactNode` | - |
+| ...rest | All native `<button>` props | - |

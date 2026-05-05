@@ -1,0 +1,79 @@
+# Theming
+
+feriko-ui does theming the boring, reliable way: every visual decision is a CSS custom property, and themes just rewrite the values. No context provider, no CSS-in-JS, no FOUC.
+
+## How a theme is applied
+
+Set `data-feriko-theme` on any ancestor element - usually `<html>` or the section you want themed:
+
+```tsx
+<html data-feriko-theme="cyberpunk">
+  <body>{children}</body>
+</html>
+```
+
+Available out of the box:
+
+- `cyberpunk` (default - magenta + cyan)
+- `synthwave` (hot pink + sunset)
+- `tokyo-night` (cooler blues, low saturation)
+- `dark-fantasy` (gold + crimson)
+
+Try the switcher in the sidebar - the entire site changes in place.
+
+<Preview>
+  <Button variant="primary">Primary</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="neon">Neon</Button>
+  <Badge tone="accent" dot>online</Badge>
+</Preview>
+
+## The token model
+
+The base file (`variables.css`) declares two layers:
+
+1. **Primitives** - raw colour ramps, font stacks, radii, shadows.
+2. **Semantic tokens** - what components actually consume:
+   - `--fui-bg`, `--fui-bg-soft`, `--fui-bg-raised`
+   - `--fui-text`, `--fui-text-dim`, `--fui-text-faint`
+   - `--fui-accent`, `--fui-accent-glow`, `--fui-accent-contrast`
+   - `--fui-border`, `--fui-border-strong`
+   - `--fui-shadow-glow`, `--fui-radius`, `--fui-radius-sm`, `--fui-radius-lg`
+   - `--fui-font`, `--fui-font-mono`, `--fui-transition`
+
+Override any of them in your own CSS to brand the library:
+
+```css
+:root,
+[data-feriko-theme="cyberpunk"] {
+  --fui-accent: #ff3366;
+  --fui-accent-glow: #ff7ea1;
+}
+```
+
+That's the entire customisation surface. No build step, no JavaScript.
+
+## Building a custom theme
+
+```css
+[data-feriko-theme="aurora"] {
+  --fui-bg: #050818;
+  --fui-bg-soft: #0a1130;
+  --fui-bg-raised: #0e183d;
+  --fui-text: #e0ffff;
+  --fui-text-dim: #8ec4d4;
+  --fui-text-faint: #4d6e7a;
+  --fui-accent: #5eead4;
+  --fui-accent-glow: #99fbe2;
+  --fui-accent-contrast: #052e2a;
+  --fui-border: rgba(94, 234, 212, 0.18);
+  --fui-border-strong: rgba(94, 234, 212, 0.35);
+  --fui-shadow-glow: 0 0 28px rgba(94, 234, 212, 0.35);
+}
+```
+
+Then apply with `data-feriko-theme="aurora"` and you're done.
+
+## Trimming themes you don't ship
+
+If you used the CLI, `feriko-ui init` asks which themes to bundle. You can also delete unused theme blocks from `feriko-variables.css` by hand - each theme block is self-contained between `[data-feriko-theme="<name>"] {` markers.

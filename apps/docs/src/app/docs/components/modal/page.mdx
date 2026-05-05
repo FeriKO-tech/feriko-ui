@@ -1,0 +1,61 @@
+import { ModalDemo, DrawerDemo } from '@/components/demos/modal-demo';
+
+# Modal & Drawer
+
+Two takes on the same primitive: a portalled, focus-trapped panel that closes on Escape or backdrop click. `Modal` centres in the viewport, `Drawer` slides in from an edge.
+
+## Modal
+
+<Preview>
+  <ModalDemo />
+</Preview>
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Modal
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Confirm jack-in"
+  description="You're about to connect to the mainframe."
+  footer={
+    <>
+      <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
+      <Button onClick={confirm}>Confirm</Button>
+    </>
+  }
+>
+  <p>Focus is trapped here. Body scroll is locked while open.</p>
+</Modal>
+```
+
+What `Modal` gives you for free:
+
+- **Portal** to `document.body`.
+- **Focus trap** - tabbing loops inside the panel; on close, focus returns to the trigger.
+- **Escape** closes (toggle via `disableEscapeClose`).
+- **Backdrop click** closes (toggle via `disableBackdropClose`).
+- **`aria-modal`** plus `aria-labelledby` / `aria-describedby` from the title and description slots.
+- **Body scroll lock** while open.
+
+## Drawer
+
+<Preview>
+  <DrawerDemo side="right" />
+  <DrawerDemo side="left" />
+  <DrawerDemo side="top" />
+  <DrawerDemo side="bottom" />
+</Preview>
+
+```tsx
+<Drawer open={open} side="right" onClose={...} title="Filters">
+  …
+</Drawer>
+```
+
+Identical a11y guarantees as `Modal`. Sides: `left`, `right` (default), `top`, `bottom`.
+
+## When to use which
+
+- Use **Modal** for confirmation dialogs, focused tasks, content that must complete before the user moves on.
+- Use **Drawer** for filters, navigation, and settings - things the user likes to dip in and out of.

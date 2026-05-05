@@ -1,0 +1,109 @@
+import { ButtonClickDemo } from '@/components/demos/interactive-demos';
+
+# Tutorial: ship your first feriko-ui screen
+
+By the end you'll have a Vite + React app, the feriko-ui stylesheet wired in, and a small "operator login" screen using `Card`, `Input`, `Button`, and `Modal`.
+
+## 1. Create the app
+
+```bash
+pnpm create vite@latest grid-console -- --template react-ts
+cd grid-console
+pnpm install
+```
+
+## 2. Add feriko-ui
+
+Two options - use whichever feels right.
+
+### Option A: npm package
+
+```bash
+pnpm add @feriko/ui
+```
+
+In `src/main.tsx`:
+
+```tsx
+import '@feriko/ui/styles.css';
+```
+
+### Option B: CLI (own the source)
+
+```bash
+npx feriko-ui init --yes
+npx feriko-ui add card input button modal
+```
+
+This writes copies into `src/components/ui/`, `src/hooks/`, `src/lib/`, plus the two stylesheets in `src/styles/`. Import them once in `main.tsx`:
+
+```tsx
+import './styles/feriko-variables.css';
+import './styles/feriko-components.css';
+```
+
+## 3. Set the theme
+
+In `index.html` (or wherever your top-level `<html>` lives), add the data attribute:
+
+```html
+<html lang="en" data-feriko-theme="cyberpunk">
+```
+
+You can flip it at runtime to give users a theme switcher. See [Theming](/docs/theming).
+
+## 4. Build the screen
+
+```tsx
+import { useState } from 'react';
+import { Button, Card, CardTitle, CardDescription, Input, Modal } from '@feriko/ui';
+
+export function App() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <main style={{ display: 'grid', placeItems: 'center', minHeight: '100vh' }}>
+      <Card glow style={{ padding: 32, width: 360 }}>
+        <CardTitle>Operator login</CardTitle>
+        <CardDescription>Authenticate to enter the grid.</CardDescription>
+        <div style={{ display: 'grid', gap: 12, marginTop: 16 }}>
+          <Input label="Handle" placeholder="neo@mainframe" />
+          <Input label="Cipher" type="password" placeholder="••••••••" />
+          <Button onClick={() => setOpen(true)}>Jack in</Button>
+        </div>
+      </Card>
+
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Connection established"
+        description="You're online. Welcome back, operator."
+        footer={<Button onClick={() => setOpen(false)}>Close</Button>}
+      />
+    </main>
+  );
+}
+```
+
+That's a complete UI:
+
+- `Card glow` gives the panel its halo.
+- `Input` carries the labelled-field ergonomics (label + hint slot + `aria-invalid`).
+- `Button` is the primary CTA.
+- `Modal` confirms the action with a portal + focus trap + Escape dismiss.
+
+## 5. Pick a state pattern
+
+Most components are happy uncontrolled (`Tabs defaultValue`, `Accordion defaultValue`), but they all expose controlled props (`value` / `onValueChange`) when you want to integrate with a router or a global store.
+
+The `Button` itself is just a native `<button>` - track state however you like. Quick demo:
+
+<Preview>
+  <ButtonClickDemo />
+</Preview>
+
+## Where to next
+
+- [Theming](/docs/theming) - tokens, custom themes, trimming what you ship.
+- [CLI reference](/docs/cli) - the full `init` / `add` / `list` surface.
+- [Component pages](/docs/components/button) - prop tables and live previews.

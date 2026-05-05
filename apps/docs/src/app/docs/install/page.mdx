@@ -1,0 +1,57 @@
+# Install
+
+feriko-ui ships two install paths. Pick whichever fits your workflow - they coexist happily.
+
+## 1. As an npm package
+
+```bash
+pnpm add @feriko/ui
+# or
+npm i @feriko/ui
+```
+
+Then import the two stylesheets once at your app entry:
+
+```ts
+import '@feriko/ui/styles.css';
+```
+
+That single line gives you:
+
+- the design tokens (every CSS custom property under `--fui-*`)
+- the four bundled themes (`cyberpunk`, `synthwave`, `tokyo-night`, `dark-fantasy`)
+- the component CSS
+
+Now use any component:
+
+```tsx
+import { Button } from '@feriko/ui';
+
+export function App() {
+  return <Button variant="neon">Jack in</Button>;
+}
+```
+
+<Preview>
+  <Button variant="neon">Jack in</Button>
+</Preview>
+
+## 2. With the CLI (shadcn-style)
+
+If you'd rather own the source of every component:
+
+```bash
+npx feriko-ui init
+npx feriko-ui add button card modal
+```
+
+`init` writes a `feriko.config.json` and emits the two stylesheets into your project. `add` copies component source straight into the directory you configured (defaults: `src/components/ui/`). Dependencies between components - e.g. `Modal` depending on the `useFocusTrap` hook - are resolved automatically.
+
+See the [CLI reference](/docs/cli) for the full command surface.
+
+## Peer dependencies
+
+- React 18 or 19.
+- A bundler that can handle ESM + CSS imports (Vite, Next.js, Remix, Astro, esbuild - any of those work).
+
+That's it. No Tailwind requirement, no CSS-in-JS runtime, no postcss plugin.

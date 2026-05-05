@@ -1,0 +1,76 @@
+# CLI
+
+The `feriko-ui` CLI copies component source straight into your project. No runtime dependency on `@feriko/ui` afterwards - the code is yours, edit anything.
+
+It's published as `feriko-ui` on npm so it's always one `npx` away.
+
+## Quick reference
+
+```bash
+# Bootstrap the project
+npx feriko-ui init                       # interactive
+npx feriko-ui init --yes                 # accept defaults
+
+# Install components (deps are resolved automatically)
+npx feriko-ui add button card modal      # specific names
+npx feriko-ui add --all                  # everything in the registry
+npx feriko-ui add tabs --overwrite       # skip the overwrite prompt
+
+# Browse the registry
+npx feriko-ui list
+
+# Print version
+npx feriko-ui version
+```
+
+## What `init` does
+
+1. Writes `feriko.config.json` at the project root.
+2. Emits `feriko-variables.css` (design tokens + selected themes) and `feriko-components.css` (component styles) into your configured `stylesDir`.
+3. Prints next steps.
+
+The defaults map to the layout most React apps use:
+
+```json
+{
+  "componentsDir": "src/components/ui",
+  "hooksDir": "src/hooks",
+  "utilsDir": "src/lib",
+  "stylesDir": "src/styles",
+  "alias": "@/components/ui",
+  "themes": ["cyberpunk", "synthwave", "tokyo-night", "dark-fantasy"]
+}
+```
+
+## What `add <name...>` does
+
+The CLI walks a dependency graph before writing anything. For example, `feriko-ui add modal` actually copies four files:
+
+```
+cn → utils
+useFocusTrap → hooks
+Button (no, wait, just Button is independent)
+Modal → components
+```
+
+Output:
+
+<TerminalBlock prompt>{`Install order: cn → use-focus-trap → modal
+✓ Wrote src/lib/cn.ts
+✓ Wrote src/hooks/useFocusTrap.ts
+✓ Wrote src/components/ui/Modal.tsx
+Done: 3 written, 0 skipped.`}</TerminalBlock>
+
+If a destination file already exists you'll be prompted unless you pass `--overwrite`.
+
+## When to choose CLI over the npm package
+
+| | npm | CLI |
+|---|---|---|
+| You like patch upgrades via semver | ✓ | ✗ (re-run `add --overwrite`) |
+| You want to fork / heavily edit components | ✗ | ✓ |
+| You ship the smallest possible bundle | ✓ | ✓ (only the code you copy) |
+| You need every component everywhere | ✓ | ✓ |
+| Zero runtime third-party deps | ✗ | depends on what you copy |
+
+The two paths are not exclusive - it's fine to start with the npm package and selectively `add` overrides for components you customise heavily.

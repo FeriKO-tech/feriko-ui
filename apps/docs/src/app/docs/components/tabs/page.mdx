@@ -1,0 +1,58 @@
+import { TabsDemo, AccordionDemo } from '@/components/demos/interactive-demos';
+
+# Tabs
+
+Composable, fully accessible tabs with an indicator that animates between selections.
+
+<Preview>
+  <TabsDemo />
+</Preview>
+
+```tsx
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="activity">Activity</TabsTrigger>
+    <TabsTrigger value="settings">Settings</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">…</TabsContent>
+  <TabsContent value="activity">…</TabsContent>
+  <TabsContent value="settings">…</TabsContent>
+</Tabs>
+```
+
+Pieces: `Tabs` (root), `TabsList`, `TabsTrigger`, `TabsContent`. The indicator pill is positioned with `getBoundingClientRect` and animated via CSS.
+
+### Keyboard
+
+- `←` / `→` (or `↑` / `↓` when `orientation="vertical"`) cycles through enabled triggers.
+- `Home` / `End` jumps to the first / last enabled trigger.
+- `Tab` enters or leaves the tablist using a roving `tabindex`.
+
+### Controlled vs uncontrolled
+
+```tsx
+// uncontrolled
+<Tabs defaultValue="a">…</Tabs>
+
+// controlled
+<Tabs value={selected} onValueChange={setSelected}>…</Tabs>
+```
+
+# Accordion
+
+<Preview>
+  <AccordionDemo />
+</Preview>
+
+```tsx
+<Accordion type="single" defaultValue="connect" collapsible>
+  <AccordionItem value="connect">
+    <AccordionTrigger>How do I jack in?</AccordionTrigger>
+    <AccordionContent>Plug into the grid port…</AccordionContent>
+  </AccordionItem>
+  …
+</Accordion>
+```
+
+Switch to many-open mode with `type="multiple"`. `collapsible` (default `true`) lets the active item close in `single` mode. Triggers wire native buttons with `aria-expanded` / `aria-controls`; the panel gets `role="region"`.

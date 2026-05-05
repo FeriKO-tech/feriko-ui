@@ -6,15 +6,18 @@
   "packageManager": "pnpm@9.15.0",
   "scripts": {
     "build": "pnpm --filter @feriko/ui build",
+    "build:cli": "pnpm --filter feriko-ui build",
+    "build:docs": "pnpm --filter @feriko/docs build",
     "typecheck": "pnpm -r typecheck",
     "dev": "pnpm --filter storybook dev",
+    "dev:docs": "pnpm --filter @feriko/docs dev",
     "storybook": "pnpm --filter storybook dev",
     "build:storybook": "pnpm --filter storybook build",
     "lint": "pnpm typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish",
-    "clean": "rimraf packages/*/dist apps/*/dist node_modules/.cache"
+    "release": "pnpm build && pnpm build:cli && changeset publish",
+    "clean": "rimraf packages/*/dist apps/*/dist apps/*/.next node_modules/.cache"
   },
   "keywords": [
     "react",

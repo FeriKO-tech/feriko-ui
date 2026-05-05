@@ -16,6 +16,8 @@ feriko-ui is a small set of React primitives shaped around a specific aesthetic 
 - Four built-in themes: `cyberpunk`, `synthwave`, `tokyo-night`, `dark-fantasy`.
 - Eighteen components across base, overlay, and data-visual primitives - see the table below.
 - Storybook 8 playground with a live theme switcher.
+- A shadcn-style CLI that copies component source into consumer projects.
+- A Next.js 15 + MDX docs app and source-controlled Figma kit spec.
 
 There is no Tailwind requirement, no CSS-in-JS runtime, no opinion about your router. Drop the stylesheet in once, import components, ship.
 
@@ -25,8 +27,11 @@ There is no Tailwind requirement, no CSS-in-JS runtime, no opinion about your ro
 feriko-ui/
   packages/
     ui/                  # @feriko/ui - the published npm package
+    cli/                 # feriko-ui - npx CLI for copying components
   apps/
     storybook/           # Storybook 8 documentation app (private)
+    docs/                # Next.js 15 + MDX docs app (private)
+  figma/                 # Tokens + Figma component build spec
   .changeset/            # Release notes + version bumps (changesets)
 ```
 
@@ -61,17 +66,33 @@ Switch themes by toggling a data attribute anywhere above your components:
 
 Supported values: `cyberpunk` (default), `synthwave`, `tokyo-night`, `dark-fantasy`. You can also override any `--fui-*` variable yourself.
 
+## CLI quick start
+
+If you want to own the source instead of importing from npm, use the CLI:
+
+```bash
+npx feriko-ui init
+npx feriko-ui add button card modal
+npx feriko-ui list
+```
+
+`init` writes `feriko.config.json` and emits `feriko-variables.css` plus `feriko-components.css`. `add` copies components, hooks, and utils into the configured folders, resolving dependencies automatically.
+
 ## Quick start (contributor)
 
 ```bash
 pnpm install
 pnpm dev              # Storybook on http://localhost:6006
+pnpm dev:docs         # Next.js docs on http://localhost:3030
 pnpm build            # Build the @feriko/ui package (dist/)
+pnpm build:cli        # Build the feriko-ui CLI package (dist/)
+pnpm build:docs       # Build the Next.js docs app
 pnpm build:storybook  # Static Storybook in apps/storybook/storybook-static/
 pnpm typecheck        # TypeScript across all workspaces
 ```
 
 > Heads-up: the `pnpm build:storybook` command uses Vite, which currently fails to build when the project path contains a `#` character (Vite [#14289](https://github.com/vitejs/vite/issues/14289)). `pnpm dev` and the library build (`pnpm build`) are unaffected, and CI runs in a clean path.
+> Heads-up: `pnpm build:docs` includes a local workaround for the same Windows `#` path class by building from a temporary copy when needed.
 
 ### Adding a changeset
 
@@ -99,6 +120,17 @@ Key variables:
 - `--fui-neon-a`, `--fui-neon-b` - gradient duo used by `NeonBorder` and `GlitchText`
 - `--fui-radius-sm`, `--fui-radius`, `--fui-radius-lg` - corner radii
 - `--fui-shadow-glow`, `--fui-shadow-glow-strong` - halo shadows
+
+## Figma kit
+
+The `figma/` directory contains text-first source for a 1-to-1 Figma library:
+
+- `design-tokens.json` - W3C Design Tokens format for Tokens Studio or Style Dictionary.
+- `tokens.css` - CSS custom property reference matching `packages/ui/src/styles/variables.css`.
+- `spec.md` - page-by-page component spec for recreating the Figma file.
+- `README.md` - setup and update workflow.
+
+A native `.fig` binary is not committed because Figma does not provide a stable writeable file format. The tracked token/spec files are the source of truth.
 
 ## Component reference
 

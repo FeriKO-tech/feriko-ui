@@ -1,0 +1,85 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "feriko-ui design tokens - matches packages/ui/src/styles/variables.css 1:1.",
+  "global": {
+    "typography": {
+      "font-sans": { "$type": "fontFamily", "$value": ["Inter", "system-ui", "-apple-system", "sans-serif"] },
+      "font-mono": { "$type": "fontFamily", "$value": ["JetBrains Mono", "Fira Code", "ui-monospace", "monospace"] }
+    },
+    "radii": {
+      "sm": { "$type": "dimension", "$value": "6px" },
+      "md": { "$type": "dimension", "$value": "10px" },
+      "lg": { "$type": "dimension", "$value": "16px" }
+    },
+    "motion": {
+      "transition": { "$type": "duration", "$value": "160ms" },
+      "ease": { "$type": "cubicBezier", "$value": [0.4, 0, 0.2, 1] }
+    },
+    "semantic": {
+      "success": { "$type": "color", "$value": "#22c55e" },
+      "danger":  { "$type": "color", "$value": "#ff4d5e" },
+      "danger-glow": { "$type": "color", "$value": "#ff8a99" },
+      "warning": { "$type": "color", "$value": "#f5b544" },
+      "info":    { "$type": "color", "$value": "#63d2ff" }
+    }
+  },
+  "themes": {
+    "cyberpunk": {
+      "bg":              { "$type": "color", "$value": "#0a0a14" },
+      "bg-soft":         { "$type": "color", "$value": "#11111d" },
+      "bg-panel":        { "$type": "color", "$value": "#15152380" },
+      "bg-raised":       { "$type": "color", "$value": "#1c1c2e" },
+      "border":          { "$type": "color", "$value": "rgba(255,255,255,0.08)" },
+      "border-strong":   { "$type": "color", "$value": "rgba(255,255,255,0.18)" },
+      "text":            { "$type": "color", "$value": "#f0f0f5" },
+      "text-dim":        { "$type": "color", "$value": "#9aa0b4" },
+      "text-faint":      { "$type": "color", "$value": "#5b6076" },
+      "accent":          { "$type": "color", "$value": "#9d7bff" },
+      "accent-glow":     { "$type": "color", "$value": "#c4b1ff" },
+      "accent-contrast": { "$type": "color", "$value": "#0a0a14" },
+      "neon-a":          { "$type": "color", "$value": "#ff3ccf" },
+      "neon-b":          { "$type": "color", "$value": "#4cf2ff" },
+      "shadow-glow":         { "$type": "shadow", "$value": "0 0 24px rgba(157,123,255,0.25)" },
+      "shadow-glow-strong":  { "$type": "shadow", "$value": "0 0 32px rgba(157,123,255,0.45)" }
+    },
+    "synthwave": {
+      "bg":              { "$type": "color", "$value": "#14011f" },
+      "bg-soft":         { "$type": "color", "$value": "#1b0230" },
+      "bg-panel":        { "$type": "color", "$value": "#22054080" },
+      "bg-raised":       { "$type": "color", "$value": "#2c0a55" },
+      "accent":          { "$type": "color", "$value": "#ff5ec7" },
+      "accent-glow":     { "$type": "color", "$value": "#ff9ed9" },
+      "accent-contrast": { "$type": "color", "$value": "#14011f" },
+      "neon-a":          { "$type": "color", "$value": "#ff5ec7" },
+      "neon-b":          { "$type": "color", "$value": "#56f0ff" },
+      "shadow-glow":         { "$type": "shadow", "$value": "0 0 24px rgba(255,94,199,0.3)" },
+      "shadow-glow-strong":  { "$type": "shadow", "$value": "0 0 32px rgba(255,94,199,0.5)" }
+    },
+    "tokyo-night": {
+      "bg":              { "$type": "color", "$value": "#1a1b26" },
+      "bg-soft":         { "$type": "color", "$value": "#1f2335" },
+      "bg-panel":        { "$type": "color", "$value": "#24283b80" },
+      "bg-raised":       { "$type": "color", "$value": "#2a2e46" },
+      "accent":          { "$type": "color", "$value": "#7aa2f7" },
+      "accent-glow":     { "$type": "color", "$value": "#a9c2ff" },
+      "accent-contrast": { "$type": "color", "$value": "#1a1b26" },
+      "neon-a":          { "$type": "color", "$value": "#bb9af7" },
+      "neon-b":          { "$type": "color", "$value": "#7dcfff" },
+      "shadow-glow":         { "$type": "shadow", "$value": "0 0 24px rgba(122,162,247,0.3)" },
+      "shadow-glow-strong":  { "$type": "shadow", "$value": "0 0 32px rgba(122,162,247,0.5)" }
+    },
+    "dark-fantasy": {
+      "bg":              { "$type": "color", "$value": "#0d0806" },
+      "bg-soft":         { "$type": "color", "$value": "#1a0f0a" },
+      "bg-panel":        { "$type": "color", "$value": "#24150f80" },
+      "bg-raised":       { "$type": "color", "$value": "#301c13" },
+      "accent":          { "$type": "color", "$value": "#e4a84a" },
+      "accent-glow":     { "$type": "color", "$value": "#ffd78a" },
+      "accent-contrast": { "$type": "color", "$value": "#0d0806" },
+      "neon-a":          { "$type": "color", "$value": "#e4a84a" },
+      "neon-b":          { "$type": "color", "$value": "#b24c27" },
+      "shadow-glow":         { "$type": "shadow", "$value": "0 0 24px rgba(228,168,74,0.25)" },
+      "shadow-glow-strong":  { "$type": "shadow", "$value": "0 0 32px rgba(228,168,74,0.5)" }
+    }
+  }
+}

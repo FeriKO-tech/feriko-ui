@@ -1,0 +1,62 @@
+import { TableDemo, PaginationDemo } from '@/components/demos/interactive-demos';
+
+# Table
+
+Composable styled primitives. `TableHead` opts into sorting via three small props - the actual sort logic stays in your component.
+
+<Preview>
+  <TableDemo />
+</Preview>
+
+```tsx
+const [sortKey, setSortKey] = useState<keyof Operator>('uptime');
+const [sortDir, setSortDir] = useState<SortDirection>('desc');
+
+const dir = (key: keyof Operator): SortDirection => (sortKey === key ? sortDir : null);
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead sortable sortDirection={dir('handle')} onSortToggle={() => toggle('handle')}>
+        Handle
+      </TableHead>
+      <TableHead sortable sortDirection={dir('uptime')} onSortToggle={() => toggle('uptime')}>
+        Uptime
+      </TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {sorted.map((row) => (
+      <TableRow key={row.id}>
+        <TableCell>{row.handle}</TableCell>
+        <TableCell>{row.uptime.toFixed(2)}%</TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
+```
+
+`TableHead` wires up `aria-sort` (`ascending` / `descending` / `none`), keyboard activation (Enter / Space), and a chevron indicator. The cycle is up to you - the demo above goes `asc → desc → null → asc …`.
+
+Other primitives: `TableCaption`, `TableBody`, `TableCell`. Pass `selected` to `TableRow` to highlight a row.
+
+# Pagination
+
+<Preview>
+  <PaginationDemo />
+</Preview>
+
+```tsx
+const [page, setPage] = useState(1);
+
+<Pagination
+  page={page}
+  pageCount={20}
+  onPageChange={setPage}
+  siblingCount={1}      // pages either side of current
+  showBoundaries        // always render 1 + last (default true)
+  showControls          // prev / next buttons (default true)
+/>
+```
+
+Numbered pagination with ellipsis. Wrapped in a `<nav aria-label="Pagination">`, each numbered button gets `aria-label="Go to page N"`, and the active button gets `aria-current="page"`. Disable the controls or the boundaries individually via the props above.

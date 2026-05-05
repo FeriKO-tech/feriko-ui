@@ -1,0 +1,73 @@
+/* feriko-ui Figma token reference - matches packages/ui/src/styles/variables.css */
+:root,
+[data-feriko-theme='cyberpunk'] {
+  --fui-font: 'Inter', system-ui, -apple-system, sans-serif;
+  --fui-font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --fui-bg: #0a0a14;
+  --fui-bg-soft: #11111d;
+  --fui-bg-panel: #15152380;
+  --fui-bg-raised: #1c1c2e;
+  --fui-border: rgba(255, 255, 255, 0.08);
+  --fui-border-strong: rgba(255, 255, 255, 0.18);
+  --fui-text: #f0f0f5;
+  --fui-text-dim: #9aa0b4;
+  --fui-text-faint: #5b6076;
+  --fui-accent: #9d7bff;
+  --fui-accent-glow: #c4b1ff;
+  --fui-accent-contrast: #0a0a14;
+  --fui-success: #22c55e;
+  --fui-danger: #ff4d5e;
+  --fui-danger-glow: #ff8a99;
+  --fui-warning: #f5b544;
+  --fui-info: #63d2ff;
+  --fui-neon-a: #ff3ccf;
+  --fui-neon-b: #4cf2ff;
+  --fui-radius-sm: 6px;
+  --fui-radius: 10px;
+  --fui-radius-lg: 16px;
+  --fui-shadow-glow: 0 0 24px rgba(157, 123, 255, 0.25);
+  --fui-shadow-glow-strong: 0 0 32px rgba(157, 123, 255, 0.45);
+  --fui-transition: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-feriko-theme='synthwave'] {
+  --fui-bg: #14011f;
+  --fui-bg-soft: #1b0230;
+  --fui-bg-panel: #22054080;
+  --fui-bg-raised: #2c0a55;
+  --fui-accent: #ff5ec7;
+  --fui-accent-glow: #ff9ed9;
+  --fui-accent-contrast: #14011f;
+  --fui-neon-a: #ff5ec7;
+  --fui-neon-b: #56f0ff;
+  --fui-shadow-glow: 0 0 24px rgba(255, 94, 199, 0.3);
+  --fui-shadow-glow-strong: 0 0 32px rgba(255, 94, 199, 0.5);
+}
+
+[data-feriko-theme='tokyo-night'] {
+  --fui-bg: #1a1b26;
+  --fui-bg-soft: #1f2335;
+  --fui-bg-panel: #24283b80;
+  --fui-bg-raised: #2a2e46;
+  --fui-accent: #7aa2f7;
+  --fui-accent-glow: #a9c2ff;
+  --fui-accent-contrast: #1a1b26;
+  --fui-neon-a: #bb9af7;
+  --fui-neon-b: #7dcfff;
+  --fui-shadow-glow: 0 0 24px rgba(122, 162, 247, 0.3);
+  --fui-shadow-glow-strong: 0 0 32px rgba(122, 162, 247, 0.5);
+}
+
+[data-feriko-theme='dark-fantasy'] {
+  --fui-bg: #0d0806;
+  --fui-bg-soft: #1a0f0a;
+  --fui-bg-panel: #24150f80;
+  --fui-bg-raised: #301c13;
+  --fui-accent: #e4a84a;
+  --fui-accent-glow: #ffd78a;
+  --fui-accent-contrast: #0d0806;
+  --fui-neon-a: #e4a84a;
+  --fui-neon-b: #b24c27;
+  --fui-shadow-glow: 0 0 24px rgba(228, 168, 74, 0.25);
+  --fui-shadow-glow-strong: 0 0 32px rgba(228, 168, 74, 0.5);
+}

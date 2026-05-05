@@ -1,0 +1,50 @@
+# Figma kit
+
+The Figma kit lives in the repo under `figma/`. It is designed to recreate the React components 1-to-1 using the same tokens and component variants.
+
+## What is included
+
+- `figma/design-tokens.json` - W3C design tokens for Tokens Studio or Style Dictionary.
+- `figma/tokens.css` - browser-friendly CSS custom property reference.
+- `figma/spec.md` - build checklist for the full Figma component library.
+- `figma/README.md` - setup and update instructions.
+
+A native `.fig` binary is not committed because Figma does not expose a stable writeable file format. The token JSON and spec are source-controlled so the kit can be rebuilt, reviewed, and versioned with the React library.
+
+## Import tokens into Figma
+
+1. Install the Tokens Studio plugin.
+2. Create a file named `feriko-ui v0.1`.
+3. Import `figma/design-tokens.json` with `Tools -> Load from JSON`.
+4. Apply the `cyberpunk` theme as the base token set.
+5. Add modes for `synthwave`, `tokyo-night`, and `dark-fantasy`.
+
+## Build order
+
+Follow `figma/spec.md` in this order:
+
+1. Foundations - color variables, text styles, radii, shadows, motion notes.
+2. Base components - Button, Badge, Card, Input, Textarea, Select.
+3. Overlays - Modal, Drawer, Tooltip, Popover.
+4. Data display - Tabs, Accordion, Table, Pagination.
+5. Specials - GlitchText, NeonBorder, TerminalBlock, ScanlineOverlay.
+6. Examples - dashboard, login panel, settings drawer, command palette.
+
+## Parity rules
+
+- Names must match React exports exactly.
+- Any visual prop in React should be a Figma component property.
+- Every component must work in all four theme modes.
+- Auto Layout should handle width changes and content length.
+- Accessibility notes from React docs should be copied into Figma descriptions.
+
+## Versioning
+
+When the React library changes:
+
+1. Update the React component and CSS token source.
+2. Update `figma/design-tokens.json`, `figma/tokens.css`, and `figma/spec.md`.
+3. Add a changeset if the public component API changed.
+4. Publish a new Figma library version with matching release notes.
+
+The kit is intentionally text-first so contributors can review Figma changes in Git instead of passing around opaque binaries.

@@ -1,0 +1,50 @@
+import { PopoverDemo, TooltipDemo } from '@/components/demos/tooltip-demo';
+
+# Tooltip & Popover
+
+Two lightweight floating panels powered by [`@floating-ui/react`](https://floating-ui.com/). They share placement, flipping, and shifting middleware - the difference is the trigger and the focus model.
+
+## Tooltip
+
+Hover + keyboard-focus, never steals focus, no interactive content inside.
+
+<Preview>
+  <TooltipDemo />
+</Preview>
+
+```tsx
+<Tooltip content="Save your changes" placement="top">
+  <Button>Save</Button>
+</Tooltip>
+```
+
+Twelve placements (`top`, `top-start`, `top-end`, …, `left-end`). The arrow and tooltip both flip / shift when they would overflow the viewport. The single child must accept refs - native DOM nodes and `React.forwardRef` components both work.
+
+## Popover
+
+Click-triggered, focus-managed (focus moves into the panel on open, restores to the trigger on close), can hold interactive content.
+
+<Preview>
+  <PopoverDemo />
+</Preview>
+
+```tsx
+<Popover
+  placement="bottom"
+  content={
+    <div>
+      <Button variant="ghost" size="sm">Profile</Button>
+      <Button variant="ghost" size="sm">Sign out</Button>
+    </div>
+  }
+>
+  <Button>Options</Button>
+</Popover>
+```
+
+Outside-press and Escape both close. Pass `open` / `onOpenChange` to control the state, or let it manage itself.
+
+## When to use which
+
+- **Tooltip** - quick label or hint. Never with focusable content inside.
+- **Popover** - menus, mini forms, helpful card-sized panels.

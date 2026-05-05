@@ -1,0 +1,64 @@
+# Specials
+
+The aesthetic-first components that give feriko-ui its mood. Pure CSS, zero runtime cost beyond what they render.
+
+## GlitchText
+
+<Preview>
+  <h2 style={{ margin: 0 }}>
+    <GlitchText as="span" text="SYSTEM FAILURE" />
+  </h2>
+</Preview>
+
+```tsx
+<GlitchText as="h1" text="SYSTEM FAILURE" />
+```
+
+Polymorphic - the `as` prop accepts `span` (default), `h1`-`h4`, `p`, or `div`. The glitch is a CSS pseudo-element animation fed via `data-text`, so there are no extra DOM nodes.
+
+## NeonBorder
+
+<Preview>
+  <NeonBorder glow style={{ padding: 16 }}>
+    <strong>Mainframe online</strong>
+  </NeonBorder>
+</Preview>
+
+```tsx
+<NeonBorder glow>
+  <Card>…</Card>
+</NeonBorder>
+```
+
+Uses `mask-composite` to draw a gradient outline around any block. `glow` adds a soft halo that follows the accent token.
+
+## TerminalBlock
+
+<Preview>
+  <TerminalBlock prompt>{`pnpm add @feriko/ui
+pnpm dev`}</TerminalBlock>
+</Preview>
+
+```tsx
+<TerminalBlock prompt>{`pnpm add @feriko/ui`}</TerminalBlock>
+```
+
+Mac-style terminal frame with optional `$ ` prompt prefix.
+
+## ScanlineOverlay
+
+<Preview>
+  <div style={{ position: 'relative', padding: 24, border: '1px solid var(--fui-border)', borderRadius: 12, overflow: 'hidden', minHeight: 100 }}>
+    <ScanlineOverlay />
+    <div style={{ position: 'relative', zIndex: 2 }}>CRT scanlines drift over me.</div>
+  </div>
+</Preview>
+
+```tsx
+<section style={{ position: 'relative', overflow: 'hidden' }}>
+  <ScanlineOverlay />
+  <div style={{ position: 'relative', zIndex: 2 }}>…</div>
+</section>
+```
+
+Drop into any positioned container. Use `static` to disable the drift animation.
