@@ -14,7 +14,7 @@ feriko-ui is a small set of React primitives shaped around a specific aesthetic 
 
 - Themed design tokens driven entirely by CSS custom properties.
 - Four built-in themes: `cyberpunk`, `synthwave`, `tokyo-night`, `dark-fantasy`.
-- Fourteen components: `Button`, `Badge`, `Card`, `Input`, `Textarea`, `Select`, `Modal`, `Drawer`, `Tooltip`, `Popover`, `GlitchText`, `NeonBorder`, `TerminalBlock`, `ScanlineOverlay`.
+- Eighteen components across base, overlay, and data-visual primitives - see the table below.
 - Storybook 8 playground with a live theme switcher.
 
 There is no Tailwind requirement, no CSS-in-JS runtime, no opinion about your router. Drop the stylesheet in once, import components, ship.
@@ -116,6 +116,10 @@ See the Storybook playground for interactive examples. A quick index:
 | `Drawer`          | Side-panel variant of Modal (`left`, `right`, `top`, `bottom`)            |
 | `Tooltip`         | Hover / focus tooltip via floating-ui with 12 placements and arrow        |
 | `Popover`         | Click-triggered floating panel via floating-ui, focus-managed             |
+| `Tabs`            | `tablist` with animated indicator, arrow / Home / End keyboard nav        |
+| `Accordion`       | Single or multi-open collapsible sections, fully keyboard-accessible      |
+| `Table`           | Styled table primitives + sortable `TableHead` with `aria-sort` wiring    |
+| `Pagination`      | Numbered pages with ellipsis, configurable siblings and boundary pages    |
 | `GlitchText`      | Polymorphic heading / span with RGB-split glitch animation                |
 | `NeonBorder`      | Gradient outline wrapper with optional halo                               |
 | `TerminalBlock`   | Mac-style terminal window, optional `$ ` prompt prefix                    |

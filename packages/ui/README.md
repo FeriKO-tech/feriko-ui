@@ -202,6 +202,76 @@ Hover + keyboard-focus tooltip powered by [`@floating-ui/react`](https://floatin
 
 Click-triggered panel with floating-ui positioning, focus management (`FloatingFocusManager`) and outside-click / Escape dismissal. Can be controlled via `open` / `onOpenChange` or left uncontrolled. Hide the arrow with `hideArrow`.
 
+### `Tabs`
+
+```tsx
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="activity">Activity</TabsTrigger>
+    <TabsTrigger value="settings">Settings</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">…</TabsContent>
+  <TabsContent value="activity">…</TabsContent>
+  <TabsContent value="settings">…</TabsContent>
+</Tabs>
+```
+
+Composable parts: `Tabs` (root), `TabsList`, `TabsTrigger`, `TabsContent`. Animated indicator slides between selected triggers. Arrow keys navigate, Home/End jump to first/last. Supports controlled (`value` / `onValueChange`) and uncontrolled (`defaultValue`) modes plus a vertical orientation.
+
+### `Accordion`
+
+```tsx
+<Accordion type="single" defaultValue="connect" collapsible>
+  <AccordionItem value="connect">
+    <AccordionTrigger>How do I jack in?</AccordionTrigger>
+    <AccordionContent>Plug into the grid port…</AccordionContent>
+  </AccordionItem>
+  ...
+</Accordion>
+```
+
+Single (`type='single'`, default) or many-open (`type='multiple'`) modes. `collapsible` controls whether the active item can close in `single` mode. Triggers wire `aria-expanded` / `aria-controls` to native buttons; content regions get `role='region'` and a label from their trigger.
+
+### `Table`
+
+```tsx
+<Table>
+  <TableCaption>Operators</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead sortable sortDirection={dir} onSortToggle={toggle}>Handle</TableHead>
+      <TableHead>Region</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {rows.map((row) => (
+      <TableRow key={row.id} selected={row.id === active}>
+        <TableCell>{row.handle}</TableCell>
+        <TableCell>{row.region}</TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
+```
+
+Composable styled primitives: `Table`, `TableCaption`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`. `TableHead` accepts `sortable`, `sortDirection: 'asc' | 'desc' | null`, and `onSortToggle` - sorting state stays in your component, and the cell wires up `aria-sort` and a chevron indicator for free.
+
+### `Pagination`
+
+```tsx
+const [page, setPage] = useState(1);
+
+<Pagination
+  page={page}
+  pageCount={42}
+  onPageChange={setPage}
+  siblingCount={1}
+/>
+```
+
+Numbered pagination with optional first/last boundaries and ellipses. `siblingCount` controls how many pages are shown around the current one. `showBoundaries` (default `true`) keeps the first and last page visible; `showControls` toggles the prev / next buttons. Customise the control labels via `prevLabel` / `nextLabel`.
+
 ### `GlitchText`
 
 ```tsx
