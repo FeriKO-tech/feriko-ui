@@ -12,5 +12,10 @@ export { GlitchText, type GlitchTextProps } from './components/GlitchText';
 export { NeonBorder, type NeonBorderProps } from './components/NeonBorder';
 export { TerminalBlock, type TerminalBlockProps } from './components/TerminalBlock';
 export { ScanlineOverlay, type ScanlineOverlayProps } from './components/ScanlineOverlay';
+export { Modal, type ModalProps } from './components/Modal';
+export { Drawer, type DrawerProps, type DrawerSide } from './components/Drawer';
+export { Tooltip, type TooltipProps, type TooltipPlacement } from './components/Tooltip';
+export { Popover, type PopoverProps } from './components/Popover';
 
 export { cn } from './utils/cn';
+export { useFocusTrap } from './hooks/useFocusTrap';

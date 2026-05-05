@@ -141,6 +141,67 @@ All three share the same field ergonomics:
 
 Every field ships with `aria-invalid` wiring when `error` is set, plus a mono-spaced label and hint/error slot. IDs are auto-generated via `React.useId` if you do not pass one.
 
+### `Modal`
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Modal
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Confirm"
+  description="This action is irreversible."
+  footer={
+    <>
+      <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
+      <Button onClick={submit}>Confirm</Button>
+    </>
+  }
+>
+  <p>Are you sure you want to disconnect?</p>
+</Modal>
+```
+
+Portals to `document.body`, traps focus inside the panel, closes on Escape and backdrop click (toggle off via `disableEscapeClose` / `disableBackdropClose`). Renders nothing while `open === false`. Body scroll is locked while open.
+
+### `Drawer`
+
+```tsx
+<Drawer open={open} side="right" onClose={() => setOpen(false)} title="Filters">
+  ...
+</Drawer>
+```
+
+Same ergonomics as `Modal` - portal, focus trap, Escape / backdrop dismiss - but slides in from a viewport edge. Sides: `left`, `right` (default), `top`, `bottom`.
+
+### `Tooltip`
+
+```tsx
+<Tooltip content="Save changes" placement="top">
+  <Button>Save</Button>
+</Tooltip>
+```
+
+Hover + keyboard-focus tooltip powered by [`@floating-ui/react`](https://floating-ui.com/). 12 placements (`top`, `top-start`, `top-end`, `right`, ..., `left-end`), automatic flip / shift on overflow, soft arrow. Requires a single child that accepts refs (native DOM nodes and `forwardRef` components both work).
+
+### `Popover`
+
+```tsx
+<Popover
+  placement="bottom"
+  content={
+    <div>
+      <Button variant="ghost" size="sm">Profile</Button>
+      <Button variant="ghost" size="sm">Sign out</Button>
+    </div>
+  }
+>
+  <Button>Options</Button>
+</Popover>
+```
+
+Click-triggered panel with floating-ui positioning, focus management (`FloatingFocusManager`) and outside-click / Escape dismissal. Can be controlled via `open` / `onOpenChange` or left uncontrolled. Hide the arrow with `hideArrow`.
+
 ### `GlitchText`
 
 ```tsx
