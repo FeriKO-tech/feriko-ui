@@ -10,7 +10,8 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@feriko/ui": ["../../packages/ui/src/index.ts"]
     },
     "types": ["node"],
     "resolveJsonModule": true
