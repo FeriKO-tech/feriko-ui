@@ -3,6 +3,7 @@ dist
 build
 storybook-static
 .next
+next-env.d.ts
 coverage
 .turbo
 .cache
