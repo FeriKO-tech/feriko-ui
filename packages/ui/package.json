@@ -1,6 +1,6 @@
 {
   "name": "@feriko/ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Dark / cyberpunk / gaming React UI primitives - Button, Card, Input, GlitchText, NeonBorder and more",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,8 +13,14 @@
     },
     "./styles.css": "./dist/styles.css"
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "sideEffects": ["*.css"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "build": "tsup && node scripts/copy-styles.mjs",
     "dev": "tsup --watch",
